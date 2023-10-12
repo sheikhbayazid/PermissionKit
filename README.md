@@ -5,7 +5,7 @@ A package that handles iOS and macOS permissions.
 ## Permission list: WIP
 
  - [x] Camera
- - [ ] Microphone
+ - [x] Microphone
  - [ ] Location Services
  - [ ] Calendar
  - [ ] Contacts

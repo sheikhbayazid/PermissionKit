@@ -9,4 +9,5 @@ import Foundation
 
 public enum PermissionType {
     case camera
+    case microphone
 }

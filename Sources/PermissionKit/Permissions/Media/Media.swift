@@ -21,21 +21,17 @@ extension PermissionKit {
             case .notDetermined:
                 // Media permission has not been requested yet. So, request permission.
                 AVCaptureDevice.requestAccess(for: mediaType) { granted in
-                    if granted {
-                        promise(.success(true))
-                    } else {
-                        promise(.success(false))
-                    }
+                    promise(.success(granted))
                 }
 
             case .denied:
-                promise(.failure(MeediaPermissionError.denied))
+                promise(.failure(MediaPermissionError.denied))
 
             case .restricted:
-                promise(.failure(MeediaPermissionError.restricted))
+                promise(.failure(MediaPermissionError.restricted))
 
             @unknown default:
-                promise(.failure(MeediaPermissionError.unknown))
+                promise(.failure(MediaPermissionError.unknown))
             }
         }
         .eraseToAnyPublisher()
