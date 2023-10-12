@@ -27,4 +27,28 @@ extension PermissionKit {
         }
         .eraseToAnyPublisher()
     }
+
+    @available(iOS 17, *)
+    func requestMicrophonePermissioniOS17() -> AnyPublisher<Bool, Error> {
+        Future { promise in
+            let audioApplication = AVAudioApplication.shared
+
+            switch audioApplication.recordPermission {
+            case .undetermined:
+                AVAudioApplication.requestRecordPermission { granted in
+                    promise(.success(granted))
+                }
+
+            case .denied:
+                promise(.failure(MicrophonePermissionError.denied))
+
+            case .granted:
+                promise(.success(true))
+
+            @unknown default:
+                promise(.failure(MicrophonePermissionError.unknown))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }

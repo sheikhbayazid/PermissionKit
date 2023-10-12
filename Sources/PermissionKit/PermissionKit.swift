@@ -17,6 +17,9 @@ public struct PermissionKit {
             return requestMediaPermission(mediaType: .video)
 
         case .microphone:
+            if #available(iOS 17, *) {
+                return requestMicrophonePermissioniOS17()
+            }
             return requestMicrophonePermission()
         }
     }
