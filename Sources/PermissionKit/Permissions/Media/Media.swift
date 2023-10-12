@@ -25,13 +25,13 @@ extension PermissionKit {
                 }
 
             case .denied:
-                promise(.failure(MeediaPermissionError.denied))
+                promise(.failure(MediaPermissionError.denied))
 
             case .restricted:
-                promise(.failure(MeediaPermissionError.restricted))
+                promise(.failure(MediaPermissionError.restricted))
 
             @unknown default:
-                promise(.failure(MeediaPermissionError.unknown))
+                promise(.failure(MediaPermissionError.unknown))
             }
         }
         .eraseToAnyPublisher()
